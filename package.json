@@ -19,5 +19,6 @@
   "homepage": "https://github.com/Onkarvibhute/creating-first-server#readme",
   "dependencies": {
     "nodemon": "^2.0.20"
-  }
+  },
+  "devDependencies": {}
 }
