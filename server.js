@@ -28,9 +28,50 @@ http.
             }).on("end", () =>
             {
                 body = JSON.parse(body);
+
                 console.log("data:", body);
+                let newToDo = toDoList;
+                newToDo.push(body.item);
+                console.log(newToDo);
             })
-         }
+        }
+        else if (method === "DELETE")
+        {
+            let body = " ";
+            request.on("error", (err) =>
+            {
+                console.log(err);
+             })
+                .on("data", (chunk) =>
+                {
+                    body += chunk;                  
+                }).on("end", () =>
+                {
+                    body = JSON.parse(body);
+                    let deletedThis = body.item;
+                    // for (let i = 0; i < toDoList.length; i++)
+                    // {
+                    //     if (toDoList[i] = deletedThis)
+                    //     {
+                    //         toDoList.splice(i, 1)
+                    //         break;
+                    //     }
+                            
+                    // }
+                    toDoList.find((element,index) =>
+                    {
+                        if (element === deletedThis)
+                        {
+                            toDoList.splice(index, 1);
+                        }
+                        else
+                        {
+                            console.log("not delet");
+                        }
+                    })
+                    response.writeHead(204);
+                })
+        }    
         else
         {
             response.writeHead(501);
